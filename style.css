@@ -1,0 +1,323 @@
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #0f1117;
+  color: #e5e7eb;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: calc(16px + env(safe-area-inset-top)) 16px calc(24px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.sub {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* ---------- 乐器选择 ---------- */
+.chips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 2px 0 10px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.chips::-webkit-scrollbar { display: none; }
+
+.chip {
+  flex: none;
+  padding: 7px 17px;
+  border-radius: 999px;
+  background: #1a1d26;
+  color: #9ca3af;
+  font-size: 14px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all .18s;
+}
+
+.chip.on {
+  background: #f5a623;
+  color: #14161d;
+  font-weight: 600;
+}
+
+/* ---------- 琴弦 ---------- */
+.card {
+  background: #1a1d26;
+  border-radius: 14px;
+}
+
+.strings-card {
+  padding: 10px 14px;
+  margin-bottom: 14px;
+}
+
+.string-row {
+  display: flex;
+  align-items: center;
+  padding: 11px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  transition: background .15s;
+}
+
+.string-row.selected {
+  background: rgba(245, 166, 35, .08);
+  box-shadow: inset 3px 0 0 #f5a623;
+}
+
+.string-row.matching {
+  background: rgba(255, 255, 255, .04);
+}
+
+.s-note {
+  width: 42px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.string-row.tuned .s-note { color: #4ade80; }
+
+.s-line {
+  flex: 1;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #343947 0%, #7d8494 50%, #343947 100%);
+  margin: 0 12px;
+  transition: background .2s;
+}
+
+.string-row.selected .s-line {
+  background: linear-gradient(90deg, #7a5411 0%, #f5a623 50%, #7a5411 100%);
+}
+
+.string-row.matching .s-line {
+  background: linear-gradient(90deg, #4b5563 0%, #e5e7eb 50%, #4b5563 100%);
+  box-shadow: 0 0 9px rgba(229, 231, 235, .35);
+}
+
+.string-row.matching .s-line.vibrating {
+  animation: vibrate .12s linear infinite alternate;
+}
+
+@keyframes vibrate {
+  0% { transform: translateY(-1.5px); }
+  100% { transform: translateY(1.5px); }
+}
+
+.s-freq {
+  width: 52px;
+  text-align: right;
+  font-size: 12px;
+  color: #6b7280;
+  font-variant-numeric: tabular-nums;
+}
+
+.s-check {
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  font-size: 12px;
+  color: #4ade80;
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity .2s;
+}
+
+.string-row.tuned .s-check { opacity: 1; }
+
+.mode-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 6px;
+}
+
+.mode-chip {
+  font-size: 11px;
+  color: #9ca3af;
+  padding: 5px 14px;
+  border-radius: 999px;
+  border: 1px solid #2a2e3a;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* ---------- 读数 ---------- */
+.readout {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 0 12px;
+}
+
+.note-big {
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  transition: color .2s;
+}
+
+.note-big.ok {
+  color: #4ade80;
+  text-shadow: 0 0 16px rgba(74, 222, 128, .4);
+}
+
+.freq-text {
+  font-size: 14px;
+  color: #6b7280;
+  margin-top: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.gauge {
+  width: 100%;
+  margin-top: 20px;
+  padding: 0 20px;
+}
+
+.gauge-track {
+  position: relative;
+  height: 8px;
+  border-radius: 99px;
+  background: #23272f;
+}
+
+.gauge-green {
+  position: absolute;
+  left: 45%;
+  width: 10%;
+  top: 0;
+  bottom: 0;
+  border-radius: 99px;
+  background: rgba(74, 222, 128, .85);
+}
+
+.gauge-needle {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  width: 3px;
+  height: 24px;
+  border-radius: 3px;
+  background: #f5a623;
+  transform: translateX(-50%);
+  transition: left .1s linear;
+  box-shadow: 0 0 6px rgba(245, 166, 35, .6);
+}
+
+.gauge-marks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 11px;
+  color: #4b5563;
+}
+
+.status {
+  margin-top: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  min-height: 20px;
+}
+
+.status.idle { color: #6b7280; }
+.status.low { color: #fb923c; }
+.status.high { color: #f87171; }
+.status.ok { color: #4ade80; }
+
+.level {
+  width: 60%;
+  height: 4px;
+  margin-top: 18px;
+  border-radius: 99px;
+  background: #1a1d26;
+  overflow: hidden;
+}
+
+.level-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #f5a623, #ffd98a);
+  transition: width .1s linear;
+}
+
+/* ---------- 控制 ---------- */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.a4-select {
+  padding: 12px 14px;
+  border-radius: 999px;
+  background: #1a1d26;
+  color: #9ca3af;
+  font-size: 13px;
+  border: 1px solid #2a2e3a;
+  outline: none;
+}
+
+.mic-btn {
+  flex: 1;
+  padding: 14px 0;
+  border-radius: 999px;
+  background: #f5a623;
+  color: #14161d;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+}
+
+.mic-btn.on {
+  background: #1a1d26;
+  color: #f87171;
+  border: 1px solid #f87171;
+}
+
+.hint {
+  margin: 14px 0 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #4b5563;
+  text-align: center;
+}
+
+.hint.error { color: #f87171; }
+
+@media (max-height: 640px) {
+  .note-big { font-size: 52px; }
+  .string-row { padding: 8px; }
+}

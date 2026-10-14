@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0f1117">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>乐器调音器</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+  <header class="app-header">
+    <h1>乐器调音器</h1>
+    <p class="sub">麦克风实时识别 · 音分精度</p>
+  </header>
+
+  <nav class="chips" id="instChips"></nav>
+
+  <section class="card strings-card">
+    <div class="strings" id="stringsWrap"></div>
+    <div class="mode-row">
+      <button type="button" class="mode-chip" id="modeChip">自动识别 · 点琴弦可锁定</button>
+    </div>
+  </section>
+
+  <section class="readout">
+    <div class="note-big" id="noteBig">--</div>
+    <div class="freq-text" id="freqText">弹响一根琴弦</div>
+
+    <div class="gauge">
+      <div class="gauge-track">
+        <div class="gauge-green"></div>
+        <div class="gauge-needle" id="needle"></div>
+      </div>
+      <div class="gauge-marks">
+        <span>-50¢</span><span>0</span><span>+50¢</span>
+      </div>
+    </div>
+
+    <div class="status idle" id="statusText">点击下方按钮开始</div>
+
+    <div class="level"><div class="level-fill" id="levelFill"></div></div>
+  </section>
+
+  <section class="controls">
+    <select id="a4Select" class="a4-select" aria-label="校准音 A4"></select>
+    <button type="button" class="mic-btn" id="micBtn">开始调音</button>
+  </section>
+
+  <p class="hint" id="hint">
+    点击「开始调音」并允许麦克风权限，然后逐根弹响琴弦。开启后请保持环境安静，效果更佳。
+  </p>
+</div>
+
+<script src="pitch.js"></script>
+<script src="music.js"></script>
+<script src="instruments.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
