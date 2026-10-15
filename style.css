@@ -67,6 +67,142 @@ html, body {
   font-weight: 600;
 }
 
+/* ---------- 定弦选择 ---------- */
+.tuning-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.tuning-select {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #1a1d26;
+  color: #e5e7eb;
+  font-size: 14px;
+  border: 1px solid #2a2e3a;
+  outline: none;
+}
+
+.mini-btn {
+  flex: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #1a1d26;
+  color: #9ca3af;
+  font-size: 13px;
+  border: 1px solid #2a2e3a;
+  cursor: pointer;
+}
+
+.mini-btn.on {
+  background: #f5a623;
+  color: #14161d;
+  border-color: #f5a623;
+  font-weight: 600;
+}
+
+.mini-btn.primary {
+  background: #f5a623;
+  color: #14161d;
+  border-color: #f5a623;
+  font-weight: 600;
+}
+
+.mini-btn.danger {
+  color: #f87171;
+  border-color: rgba(248, 113, 113, .4);
+}
+
+/* ---------- 自定义定弦编辑器 ---------- */
+.editor {
+  padding: 12px 14px;
+  margin-bottom: 12px;
+}
+
+.editor[hidden] { display: none; }
+
+.editor-head {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.name-input {
+  flex: 1;
+  min-width: 0;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: #23272f;
+  color: #e5e7eb;
+  font-size: 14px;
+  border: 1px solid #2a2e3a;
+  outline: none;
+}
+
+.name-input:focus { border-color: #f5a623; }
+
+.editor-strings {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ed-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 4px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .03);
+}
+
+.ed-note {
+  width: 46px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.ed-freq {
+  flex: 1;
+  text-align: right;
+  font-size: 12px;
+  color: #6b7280;
+  font-variant-numeric: tabular-nums;
+}
+
+.ed-btn {
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: #23272f;
+  color: #9ca3af;
+  font-size: 13px;
+  border: 1px solid #2a2e3a;
+  cursor: pointer;
+}
+
+.ed-btn:active { background: #2f3540; }
+
+.ed-del { color: #f87171; }
+
+.editor-foot {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.editor-foot .mini-btn { flex: 1; }
+
+.editor-tip {
+  margin: 10px 0 0;
+  font-size: 11px;
+  line-height: 1.5;
+  color: #4b5563;
+}
+
 /* ---------- 琴弦 ---------- */
 .card {
   background: #1a1d26;

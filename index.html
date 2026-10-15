@@ -19,6 +19,26 @@
 
   <nav class="chips" id="instChips"></nav>
 
+  <section class="tuning-row">
+    <select id="tuningSelect" class="tuning-select" aria-label="定弦"></select>
+    <button type="button" class="mini-btn" id="flatToggle" title="升号/降号显示">♯</button>
+    <button type="button" class="mini-btn" id="customBtn">自定义</button>
+  </section>
+
+  <section class="card editor" id="editor" hidden>
+    <div class="editor-head">
+      <input id="tuningName" class="name-input" type="text" placeholder="定弦名称" maxlength="20">
+      <button type="button" class="mini-btn" id="addStringBtn">+ 加弦</button>
+    </div>
+    <div class="editor-strings" id="editorStrings"></div>
+    <div class="editor-foot">
+      <button type="button" class="mini-btn primary" id="saveTuningBtn">保存并使用</button>
+      <button type="button" class="mini-btn" id="cancelTuningBtn">取消</button>
+      <button type="button" class="mini-btn danger" id="deleteTuningBtn" style="display:none">删除</button>
+    </div>
+    <p class="editor-tip">自定义定弦保存在浏览器 Cookie 中（约 1 年），换设备或清理 Cookie 不会保留。</p>
+  </section>
+
   <section class="card strings-card">
     <div class="strings" id="stringsWrap"></div>
     <div class="mode-row">
